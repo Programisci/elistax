@@ -3,6 +3,7 @@ package com.dubilowicz.elista.user.ob;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Pawel Dubilowicz on 2016-03-06.
@@ -13,15 +14,26 @@ import java.util.Date;
 public class UserOB implements Serializable { // interfejs wymagany dla obiektow ktore beda podlegac serializacji
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
     private Long id;
-    @Column(name = "TECHDATE", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "techdate", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date techDate;
     private String name;
     private String lastName;
 
+    @OneToMany(targetEntity=UserGroupOb.class, mappedBy="user", fetch=FetchType.EAGER)
+    private List<UserGroupOb> groups;
+
+    @OneToMany(targetEntity = WorkTimeOb.class,mappedBy="user",fetch = FetchType.EAGER)
+    private List<WorkTimeOb> workTimes;
+
+    @OneToMany(targetEntity = PlansDiaryOb.class,mappedBy="user",fetch = FetchType.EAGER)
+    private List<PlansDiaryOb> plansDiary;
+
+    @OneToMany(targetEntity = AbsenceOb.class,mappedBy="user",fetch = FetchType.EAGER)
+    private List<AbsenceOb> absences;
 
     public UserOB() {
     }
@@ -34,6 +46,8 @@ public class UserOB implements Serializable { // interfejs wymagany dla obiektow
     public Long getId() {
         return id;
     }
+
+    public List<UserGroupOb> Groups() {return groups;}
 
     public void setId(Long aId) {
         id = aId;
