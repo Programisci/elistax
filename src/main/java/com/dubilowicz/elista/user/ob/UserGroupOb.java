@@ -21,6 +21,14 @@ public class UserGroupOb implements Serializable {
     @JoinColumn(name="user_id")
     private UserOB user;
 
+    public UserGroupOb(){}
+
+    public UserGroupOb(Long aId,String aGroupName,UserOB aUser){
+        this.id=aId;
+        this.groupName=aGroupName;
+        this.user=aUser;
+    }
+
     public Long GetId(){return id;}
 
     public String GetGroupName() {return groupName;}

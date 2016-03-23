@@ -28,6 +28,15 @@ public class AbsenceOb implements Serializable{
 
     private Integer hours;
 
+    public AbsenceOb(){}
+    public AbsenceOb(Long aId,UserOB aUser,String aType,Date aDate,Integer aHours){
+        this.id=aId;
+        this.user=aUser;
+        this.type=aType;
+        this.date=aDate;
+        this.hours=aHours;
+    }
+
     public Long GetId(){return id;}
     public UserOB GetUser(){return user;}
     public String GetType(){return type;}

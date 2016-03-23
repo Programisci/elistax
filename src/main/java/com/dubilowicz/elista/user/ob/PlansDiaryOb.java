@@ -30,6 +30,16 @@ public class PlansDiaryOb implements Serializable{
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date end;
 
+    public PlansDiaryOb(){}
+
+    public PlansDiaryOb(Long aId,UserOB aUser,String aDay,Date aBegin,Date aEnd){
+        this.id=aId;
+        this.user=aUser;
+        this.day=aDay;
+        this.begin=aBegin;
+        this.end=aEnd;
+    }
+
     public Long GetId(){return id;}
     public UserOB GetUser(){return user;}
     public String GetDay(){return day;}
